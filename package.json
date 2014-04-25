@@ -1,0 +1,16 @@
+{
+    "name": "Grdn",
+    "description": "A physics internet dingus",
+    "homepage": "",
+    "version": "0.1.0",
+    "private": false,
+    "dependencies": {
+        "express": "latest",
+        "socket.io": "latest",
+        "cannon": "git://github.com/schteppe/cannon.js.git#dev",
+        "lodash": "2.2.1",
+        "colors": "x",
+        "q": "x"
+    }
+}
+
