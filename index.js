@@ -2,6 +2,7 @@ var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server, { log: false });
 var cannon = require('cannon');
+var three = require('./three.js');
 var types = cannon.Shape.types;
 
 var Universe = function( args ) {
@@ -127,6 +128,8 @@ Entity.constructShape = function( shape ) {
   }
 }
 
+Entity.defaultMesh
+
 Entity.prop = function( property, value ) {
   // TODO - individual subproperties (x y z etc)
   if (!value) return value;
@@ -142,7 +145,6 @@ Entity.prop = function( property, value ) {
       return new cannon.Quaternion(value.x, value.y, value.z, value.w);
     case 'mass':
       return value;
-    // TODO:
     case 'material': 
       return value;
     case 'shape':
@@ -255,7 +257,7 @@ var e;
 for ( var i = 0; i < 10; i++) {
   e = new Entity({
     body: { 
-      position: { x: 0, y: 2 + (2 * i), z: 1 },
+      position: { x: 0, y: 2 + (2.1 * i), z: 0 },
       shape: {
         halfExtents: { x: 1, y: 1, z: 1 },
         type: types.BOX
@@ -308,4 +310,5 @@ app.use(cors);
 app.all('/test', function(req, res) {
   e = new Entity({ body: { position: { x: 3, y: 5, z: 3 } } });
   universe.addEntity(e);
+  res.json(e);
 });

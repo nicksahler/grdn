@@ -29,7 +29,7 @@ var Grdn = {
     switch ( obj.shape.type ) {
       case types.SPHERE:
         shape = new CANNON.Sphere(obj.shape.radius);
-        material = new THREE.MeshBasicMaterial( { color: 0xF36A6A } );
+        material = new THREE.MeshBasicMaterial( { color: 0xF36A6A, opacity: .9,  transparent: true} );
         geometry = new THREE.SphereGeometry(obj.shape.radius, 64, 64);
         break;
       case types.PLANE:
@@ -37,12 +37,12 @@ var Grdn = {
         material = new THREE.MeshLambertMaterial( { color: 0x000000 } );
         geometry = new THREE.PlaneGeometry( 300, 300, 32, 32 );
 
-        THREE.ColorUtils.adjustHSV( material.color, 0, 0, 0.9 );
+        //THREE.ColorUtils.adjustHSV( material.color, 0, 0, 0.9 );
         break;
       case types.BOX:
         shape = new CANNON.Box(new CANNON.Vec3(obj.shape.halfExtents.x, obj.shape.halfExtents.y, obj.shape.halfExtents.z));
         material = new THREE.MeshBasicMaterial( { color: 0xFFFFFF, map: THREE.ImageUtils.loadTexture('./wood.png'), opacity: 1} );
-        geometry = new THREE.CubeGeometry(obj.shape.halfExtents.x * 2, obj.shape.halfExtents.y * 2, obj.shape.halfExtents.z * 2);
+        geometry = new THREE.BoxGeometry(obj.shape.halfExtents.x * 2, obj.shape.halfExtents.y * 2, obj.shape.halfExtents.z * 2);
         break;
       case types.COMPOUND:
         break;
@@ -56,8 +56,7 @@ var Grdn = {
     mesh.position.set(obj.position.x, obj.position.y, obj.position.z);
     mesh.castShadow = true;
     mesh.receiveShadow = true;
-    mesh.useQuaternion = true;
-    
+        
     body.mesh = mesh;    
     this.applyMetrics(body, obj);
     return body;
