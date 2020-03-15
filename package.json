@@ -8,7 +8,7 @@
         "express": "latest",
         "socket.io": "latest",
         "cannon": "git://github.com/schteppe/cannon.js.git#dev",
-        "lodash": "2.2.1",
+        "lodash": "4.17.15",
         "colors": "x",
         "q": "x"
     }
